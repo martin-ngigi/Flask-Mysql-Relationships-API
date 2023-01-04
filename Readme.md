@@ -71,3 +71,25 @@
                 "success": true,
                 "total": 2
             }
+
+
+3. PATCH - > Update person .
+- endpoint -> http://127.0.0.1:5000/persons/1
+- body ->
+
+            {
+                "name": "David 1",
+                "age": 52,
+                "city": "Kiambu 1"
+            }
+- response ->
+
+            {
+                "Person": {
+                    "age": 52,
+                    "city": "Kiambu 1",
+                    "name": "David 1"
+                },
+                "response": "Person Details updated",
+                "success": true
+            }

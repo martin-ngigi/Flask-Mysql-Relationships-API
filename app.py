@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
+from flask import abort
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -50,7 +51,8 @@ def create_person():
 
     return jsonify({"message": "Person created successfully", "Person": data})
 
-    
+
+#GET PERSONS
 #http://127.0.0.1:5000/persons-get
 @cross_origin()
 @app.route("/persons-get", methods=["GET"])
@@ -73,3 +75,24 @@ def get_persons():
             "total": len(persons)
         }
     )
+
+# UPDATE person
+#http://127.0.0.1:5000/persons/1
+@cross_origin()  
+@app.route("/persons/<int:id>", methods = ["PATCH"])
+def update_person(id):
+    person = Person.query.get(id)
+    name = request.json['name']
+    age = request.json['age']
+    city = request.json['city']
+
+    if person is None:
+        abort(404)
+    else:
+        person.name = name
+        person.age = age
+        person.city = city
+        db.session.add(person)
+        db.session.commit()
+        return jsonify({"success": True, "response": "Person Details updated", "Person": request.json})
+
