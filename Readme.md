@@ -218,3 +218,24 @@
                 "response": "Post deleted successfully",
                 "success": true
             }
+
+
+## PROFILE API
+1. 1. POST -> Create a new PROFILE:
+- full endpoint -> http://127.0.0.1:5000/profile/<int:person_id>
+- endpoint -> http://127.0.0.1:5000/profile/3
+- Body:
+
+            {
+                "name": "Profile 3",
+                "person_id": 3
+            }
+- response :
+
+            {
+                "message": "Profile created successfully",
+                "profile": {
+                    "name": "Profile 3",
+                    "person_id": 3
+                }
+            }
