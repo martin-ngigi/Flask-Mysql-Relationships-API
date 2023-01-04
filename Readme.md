@@ -256,3 +256,21 @@
                     }
                 ]
             }
+
+3. PATCH -> Update Profile
+- full endpoint -> http://127.0.0.1:5000/profile/<int:id>   ... id is the profile id
+- endpoint -> http://127.0.0.1:5000/profile/1
+- body ->
+
+            {
+                "name": "Profile 1."
+            }
+- response ->
+
+            {
+                "profile": {
+                    "name": "Profile 1."
+                },
+                "response": "profile Details updated",
+                "success": true
+            }

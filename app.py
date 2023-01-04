@@ -258,3 +258,20 @@ def get_profiles():
     profile_schema = ProfileSchema(many=True)
     dump_data = profile_schema.dump(profile)
     return jsonify({'profile' : dump_data})
+
+
+# UPDATE profile
+#http://127.0.0.1:5000/profile/1
+@cross_origin()  
+@app.route("/profile/<int:id>", methods = ["PATCH"])
+def update_profile(id):
+    profile = Profile.query.get(id)
+    name = request.json['name']
+
+    if profile is None:
+        abort(404, "Profile with id not found")
+    else:
+        profile.name = name
+        db.session.add(profile)
+        db.session.commit()
+        return jsonify({"success": True, "response": "profile Details updated", "profile": request.json})
