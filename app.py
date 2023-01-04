@@ -28,6 +28,7 @@ class Person(db.Model):
     age = db.Column(db.Integer, nullable=False)
     city = db.Column(db.String(100), nullable=False)
     posts = db.relationship('Post', backref='person')
+    profile = db.relationship('Profile', backref='person' , lazy=True, uselist=False)
 
     def __repr__(self) -> str:
         return f"{self.id}"
@@ -38,16 +39,30 @@ class Post(db.Model):
     content = db.Column(db.String(100), nullable=False)
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
 
+
+class Profile(db.Model):
+    __tablename__ = 'profile'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id'),unique=True)
+
 #SCHEMAS
 class PostSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Post
         load_instance=True
+
+class ProfileSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Profile
+        load_instance=True
+        
 class PersonSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Person
         load_instance=True
     posts = ma.Nested(PostSchema, many=True)
+    profile = ma.Nested(ProfileSchema, many=False)
 
 with app.app_context():
     db.create_all()
@@ -209,3 +224,27 @@ def delete_post(id):
         db.session.delete(post)
         db.session.commit()
         return jsonify({"success": True, "response": "Post deleted successfully"})
+
+#########################################################################################################################################
+#PROFILE
+
+
+#POST Profile
+#http://127.0.0.1:5000/profile/1
+@cross_origin()
+@app.route("/profile/<int:person_id>", methods=["POST"])
+def create_profile(person_id):
+    person = Person.query.get(person_id)
+
+    if person is None:
+        abort(404, "Error: No person with that id ")
+    else:
+        data = request.json
+
+        name = data['name']
+        person_id = data['person_id']
+
+        profile = Profile(name=name, person_id=person_id)
+        db.session.add(profile)
+        db.session.commit()
+        return jsonify({"message": "Profile created successfully", "profile": data})
