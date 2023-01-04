@@ -211,7 +211,7 @@ def update_post(id):
         db.session.commit()
         return jsonify({"success": True, "response": "Post Details updated", "Post": request.json})
 
-#DEEETE post
+#DELETE post
 #http://127.0.0.1:5000/post/1
 @cross_origin()  
 @app.route("/post/<int:id>", methods = ["DELETE"])
@@ -275,3 +275,17 @@ def update_profile(id):
         db.session.add(profile)
         db.session.commit()
         return jsonify({"success": True, "response": "profile Details updated", "profile": request.json})
+
+#DELETE profile
+#http://127.0.0.1:5000/profile/1
+@cross_origin()  
+@app.route("/profile/<int:id>", methods = ["DELETE"])
+def delete_profile(id):
+    profile = Profile.query.get(id)
+
+    if profile is None:
+        abort(404, "profile with id not found")
+    else:
+        db.session.delete(profile)
+        db.session.commit()
+        return jsonify({"success": True, "response": "profile deleted successfully"})

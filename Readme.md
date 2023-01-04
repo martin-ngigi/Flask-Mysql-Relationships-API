@@ -274,3 +274,14 @@
                 "response": "profile Details updated",
                 "success": true
             }
+
+
+4. DELETE -> delete profile 
+- endpoint -> http://127.0.0.1:5000/profile/5
+- response ->
+
+            {
+                "response": "profile deleted successfully",
+                "success": true
+            }
+
