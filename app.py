@@ -248,3 +248,13 @@ def create_profile(person_id):
         db.session.add(profile)
         db.session.commit()
         return jsonify({"message": "Profile created successfully", "profile": data})
+
+#GET PROFILE
+#http://127.0.0.1:5000/profile-get
+@cross_origin()
+@app.route("/profile-get", methods=["GET"])
+def get_profiles():
+    profile = Profile.query.all()
+    profile_schema = ProfileSchema(many=True)
+    dump_data = profile_schema.dump(profile)
+    return jsonify({'profile' : dump_data})

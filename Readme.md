@@ -239,3 +239,20 @@
                     "person_id": 3
                 }
             }
+
+2. GET - Get all profile
+- endpoint -> http://127.0.0.1:5000/profile-get
+- response :
+
+            {
+                "profile": [
+                    {
+                        "id": 1,
+                        "name": "Profile 2"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Profile 3"
+                    }
+                ]
+            }
