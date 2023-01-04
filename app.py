@@ -208,6 +208,20 @@ def get_posts():
     dump_data = posts_schema.dump(posts)
     return jsonify({'posts' : dump_data})
 
+#GET POST BY ID
+#http://127.0.0.1:5000/posts-get/1
+@cross_origin()
+@app.route("/posts-get/<int:id>", methods=["GET"])
+def get_posts_by_id(id):
+    posts = Post.query.get(id)
+    if posts is None:
+        abort(404, "No posts with that id ")
+    else:
+        posts_schema = PostSchema()
+        dump_data = posts_schema.dump(posts)
+        return jsonify({'persons' : dump_data})
+
+
 # UPDATE post
 #http://127.0.0.1:5000/post/1
 @cross_origin()  

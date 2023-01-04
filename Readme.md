@@ -214,7 +214,18 @@
                 ]
             }
 
-3. PATCH -> Update Post
+3. GET -> Get post by id
+- endpoint: http://127.0.0.1:5000/posts-get/5
+- response:
+
+            {
+                "persons": {
+                    "content": "Content 5",
+                    "id": 5
+                }
+            }
+
+4. PATCH -> Update Post
 - enpoint -> http://127.0.0.1:5000/post/5
 - body -> 
 
@@ -231,7 +242,7 @@
                 "success": true
             }
 
-4. DELETE -> delete post 
+5. DELETE -> delete post 
 - endpoint -> http://127.0.0.1:5000/post/11
 - response ->
 
