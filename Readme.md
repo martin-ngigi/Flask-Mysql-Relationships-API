@@ -93,3 +93,12 @@
                 "response": "Person Details updated",
                 "success": true
             }
+
+4. DELETE -> delete person
+endpoint -> http://127.0.0.1:5000/persons/1
+response:
+
+            {
+                "response": "Person deleted successfully",
+                "success": true
+            }
