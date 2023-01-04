@@ -1,0 +1,50 @@
+# FLASK API IN MYSQL 
+## Prerequisites
+- Python 3.6 and above installed on your computer.
+- Postman installed on your computer.
+- Apache XAMPP installed on your computer.
+- Favourite code editor installed. I use Pycharm community edition which is free.
+- Some knowledge of the Python programming language.  
+## Steps:
+- Create and activate a virtual environment named .venv:
+
+           
+            py -3 -m venv .venv
+            .venv\scripts\activate
+- Update pip in the virtual environment:
+
+
+            python -m pip install --upgrade pip
+- Install Flask in the virtual environment:
+
+            python -m pip install flask
+- Install required libraries from the requirements file:
+
+            pip install -r requirements.txt
+- Create a new file in your project folder named app.py
+- Runs the Flask development server(i.e. app.py):
+
+            flask run
+ - Create new dabase in MYSQL xampp database named "flask_mysql_db":
+
+            flask_mysql_rel_db
+
+## API
+1. POST -> Create Person
+- body ->
+
+            {
+                "name": "Ken",
+                "age": 25,
+                "city": "Nairobi"
+            }
+- response ->
+
+            {
+                "Person": {
+                    "age": 25,
+                    "city": "Nairobi",
+                    "name": "Ken"
+                },
+                "message": "Person created successfully"
+            }
