@@ -48,3 +48,26 @@
                 },
                 "message": "Person created successfully"
             }
+
+2. GET - get all persons
+- endpoint: http://127.0.0.1:5000/persons-get
+- response:
+
+            {
+                "persons": [
+                    {
+                        "age": 52,
+                        "city": "Kiambu",
+                        "id": 1,
+                        "name": "David"
+                    },
+                    {
+                        "age": 27,
+                        "city": "Nairobi",
+                        "id": 2,
+                        "name": "Ken"
+                    }
+                ],
+                "success": true,
+                "total": 2
+            }
