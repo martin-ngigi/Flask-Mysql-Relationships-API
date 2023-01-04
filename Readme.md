@@ -95,10 +95,83 @@
             }
 
 4. DELETE -> delete person
-endpoint -> http://127.0.0.1:5000/persons/1
-response:
+- endpoint -> http://127.0.0.1:5000/persons/1
+- response:
 
             {
                 "response": "Person deleted successfully",
                 "success": true
+            }
+
+## POST API
+1. 1. POST -> Create a new post:
+- full endpoint -> http://127.0.0.1:5000/posts/<int:person_id>
+- endpoint -> http://127.0.0.1:5000/posts/1
+- Body:
+
+            {
+                "content": "Content 1",
+                "person_id": 1
+            }
+-response ->
+
+            {
+                "message": "Post created successfully",
+                "post": {
+                    "content": "Content 4",
+                    "person_id": 2
+                }
+            }
+
+1. 2. GET - get all persons
+- endpoint: http://127.0.0.1:5000/persons-get
+- response:
+
+            {
+                "persons": [
+                    {
+                        "age": 27,
+                        "city": "Nairobi",
+                        "id": 2,
+                        "name": "Ken",
+                        "posts": [
+                            {
+                                "content": "Content 1",
+                                "id": 1
+                            },
+                            {
+                                "content": "Content 1",
+                                "id": 4
+                            },
+                            {
+                                "content": "Content 1",
+                                "id": 9
+                            },
+                            {
+                                "content": "Content 4",
+                                "id": 10
+                            }
+                        ]
+                    },
+                    {
+                        "age": 23,
+                        "city": "Nairobi",
+                        "id": 3,
+                        "name": "Martin",
+                        "posts": [
+                            {
+                                "content": "Content 1",
+                                "id": 5
+                            },
+                            {
+                                "content": "Content 1",
+                                "id": 6
+                            },
+                            {
+                                "content": "Content 1",
+                                "id": 7
+                            }
+                        ]
+                    }
+                ]
             }
