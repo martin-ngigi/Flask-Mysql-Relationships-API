@@ -175,3 +175,20 @@
                     }
                 ]
             }
+
+2. GET - Get all posts
+- endpoint -> http://127.0.0.1:5000/posts-get
+- response :
+
+            {
+                "posts": [
+                    {
+                        "content": "Content 1",
+                        "id": 1
+                    },
+                    {
+                        "content": "Content 1",
+                        "id": 5
+                    }
+                ]
+            }

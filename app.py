@@ -169,3 +169,13 @@ def create_post(person_id):
         db.session.add(post)
         db.session.commit()
         return jsonify({"message": "Post created successfully", "post": data})
+
+#GET POSTS
+#http://127.0.0.1:5000/posts-get
+@cross_origin()
+@app.route("/posts-get", methods=["GET"])
+def get_posts():
+    posts = Post.query.all()
+    posts_schema = PostSchema(many=True)
+    dump_data = posts_schema.dump(posts)
+    return jsonify({'posts' : dump_data})
