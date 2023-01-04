@@ -125,6 +125,19 @@ def get_persons():
     return jsonify({'persons' : dump_data})
 
 
+#GET PERSON BY ID
+#http://127.0.0.1:5000/persons-get/1
+@cross_origin()
+@app.route("/persons-get/<int:id>", methods=["GET"])
+def get_person_by_id(id):
+    person = Person.query.get(id)
+    if person is None:
+        abort(404, "No person with that id ")
+    else:
+        person_schema = PersonSchema()
+        dump_data = person_schema.dump(person)
+        return jsonify({'persons' : dump_data})
+
 # UPDATE person
 #http://127.0.0.1:5000/persons/1
 @cross_origin()  

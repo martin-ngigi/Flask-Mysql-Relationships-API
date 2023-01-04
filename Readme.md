@@ -71,9 +71,30 @@
                 "success": true,
                 "total": 2
             }
+3. GET -> Get person by id
+- endpoint: http://127.0.0.1:5000/persons-get/2
+- response:
 
+            {
+                "persons": {
+                    "age": 27,
+                    "city": "Nairobi",
+                    "id": 2,
+                    "name": "Ken",
+                    "posts": [
+                        {
+                            "content": "Content 1",
+                            "id": 1
+                        }
+                    ],
+                    "profile": {
+                        "id": 1,
+                        "name": "Profile 1."
+                    }
+                }
+            }
 
-3. PATCH - > Update person .
+4. PATCH - > Update person .
 - endpoint -> http://127.0.0.1:5000/persons/1
 - body ->
 
@@ -94,7 +115,7 @@
                 "success": true
             }
 
-4. DELETE -> delete person
+5. DELETE -> delete person
 - endpoint -> http://127.0.0.1:5000/persons/1
 - response:
 
