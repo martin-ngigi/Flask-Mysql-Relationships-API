@@ -289,7 +289,18 @@
                 ]
             }
 
-3. PATCH -> Update Profile
+3. GET -> Get profile by id
+- endpoint: http://127.0.0.1:5000/profile-get/5
+- response:
+
+            {
+                "persons": {
+                    "id": 1,
+                    "name": "Profile 1."
+                }
+            }
+
+4. PATCH -> Update Profile
 - full endpoint -> http://127.0.0.1:5000/profile/<int:id>   ... id is the profile id
 - endpoint -> http://127.0.0.1:5000/profile/1
 - body ->
@@ -308,7 +319,7 @@
             }
 
 
-4. DELETE -> delete profile 
+5. DELETE -> delete profile 
 - endpoint -> http://127.0.0.1:5000/profile/5
 - response ->
 

@@ -219,7 +219,7 @@ def get_posts_by_id(id):
     else:
         posts_schema = PostSchema()
         dump_data = posts_schema.dump(posts)
-        return jsonify({'persons' : dump_data})
+        return jsonify({'posts' : dump_data})
 
 
 # UPDATE post
@@ -285,6 +285,19 @@ def get_profiles():
     profile_schema = ProfileSchema(many=True)
     dump_data = profile_schema.dump(profile)
     return jsonify({'profile' : dump_data})
+
+#GET PROFILE BY ID
+#http://127.0.0.1:5000/profile-get/1
+@cross_origin()
+@app.route("/profile-get/<int:id>", methods=["GET"])
+def get_profile_by_id(id):
+    profile = Profile.query.get(id)
+    if profile is None:
+        abort(404, "No profile with that id ")
+    else:
+        profile_schema = ProfileSchema()
+        dump_data = profile_schema.dump(profile)
+        return jsonify({'persons' : dump_data})
 
 
 # UPDATE profile
