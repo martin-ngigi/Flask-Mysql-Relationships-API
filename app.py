@@ -179,3 +179,19 @@ def get_posts():
     posts_schema = PostSchema(many=True)
     dump_data = posts_schema.dump(posts)
     return jsonify({'posts' : dump_data})
+
+# UPDATE post
+#http://127.0.0.1:5000/post/1
+@cross_origin()  
+@app.route("/post/<int:id>", methods = ["PATCH"])
+def update_post(id):
+    post = Post.query.get(id)
+    content = request.json['content']
+
+    if post is None:
+        abort(404, "Post with id not found")
+    else:
+        post.content = content
+        db.session.add(post)
+        db.session.commit()
+        return jsonify({"success": True, "response": "Post Details updated", "Post": request.json})

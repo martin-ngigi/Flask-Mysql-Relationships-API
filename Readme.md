@@ -192,3 +192,20 @@
                     }
                 ]
             }
+
+3. PATCH -> Update Post
+- enpoint -> http://127.0.0.1:5000/post/5
+- body -> 
+
+            {
+                "content": "Content 5"
+            }
+- response ->
+
+            {
+                "Post": {
+                    "content": "Content 5"
+                },
+                "response": "Post Details updated",
+                "success": true
+            }
