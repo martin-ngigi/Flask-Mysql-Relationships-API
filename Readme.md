@@ -209,3 +209,12 @@
                 "response": "Post Details updated",
                 "success": true
             }
+
+4. DELETE -> delete post 
+- endpoint -> http://127.0.0.1:5000/post/11
+- response ->
+
+            {
+                "response": "Post deleted successfully",
+                "success": true
+            }

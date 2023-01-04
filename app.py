@@ -195,3 +195,17 @@ def update_post(id):
         db.session.add(post)
         db.session.commit()
         return jsonify({"success": True, "response": "Post Details updated", "Post": request.json})
+
+#DEEETE post
+#http://127.0.0.1:5000/post/1
+@cross_origin()  
+@app.route("/post/<int:id>", methods = ["DELETE"])
+def delete_post(id):
+    post = Post.query.get(id)
+
+    if post is None:
+        abort(404, "Post with id not found")
+    else:
+        db.session.delete(post)
+        db.session.commit()
+        return jsonify({"success": True, "response": "Post deleted successfully"})
